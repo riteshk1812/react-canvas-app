@@ -17,20 +17,6 @@ export default function Toolbar({ onAddRect, onAddCircle, onAddText, onUploadIma
         />
       </label>
 
-      <button className="secondary" onClick={onSave}>
-        Save JSON
-      </button>
-
-      <label className="load">
-        Load JSON
-        <input
-          type="file"
-          accept="application/json"
-          style={{ display: "none" }}
-          onChange={(e) => e.target.files[0] && onLoad(e.target.files[0])}
-        />
-      </label>
-
       <button onClick={onExport}>Export PNG</button>
 
       <div className="selected-count">Selected: {selectedCount}</div>
