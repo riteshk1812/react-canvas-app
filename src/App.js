@@ -5,11 +5,7 @@ import { ShapeFactory } from "./utils/shapeFactory";
 import "./App.css";
 
 export default function App() {
-  const [shapes, setShapes] = useState([
-    ShapeFactory("rect"),
-    ShapeFactory("circle"),
-    ShapeFactory("text"),
-  ]);
+  const [shapes, setShapes] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
 
   useEffect(() => {
@@ -26,9 +22,8 @@ export default function App() {
   const saveJSON = () => {
     const json = JSON.stringify(shapes);
     const blob = new Blob([json], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url;
+    a.href = URL.createObjectURL(blob);
     a.download = "canvas.json";
     a.click();
   };
@@ -67,7 +62,12 @@ export default function App() {
         onExport={exportPNG}
         selectedCount={selectedIds.length}
       />
-      <CanvasStage shapes={shapes} setShapes={setShapes} selectedIds={selectedIds} setSelectedIds={setSelectedIds} />
+      <CanvasStage
+        shapes={shapes}
+        setShapes={setShapes}
+        selectedIds={selectedIds}
+        setSelectedIds={setSelectedIds}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Stage, Layer, Rect, Circle, Text, Image as KonvaImage } from "react-konva";
+import React, { useRef, useState } from "react";
+import { Stage, Layer, Rect, Circle, Text } from "react-konva";
 import KonvaTransformer from "./KonvaTransformer";
-import ImageUrl from "./ImageUrl";
+import URLImage from "./URLImage";
 import { GRID } from "../utils/shapeFactory";
 
 export default function CanvasStage({ shapes, setShapes, selectedIds, setSelectedIds }) {
@@ -9,7 +9,6 @@ export default function CanvasStage({ shapes, setShapes, selectedIds, setSelecte
   const layerRef = useRef();
   const nodeRefs = useRef({});
   const marqueeRef = useRef(null);
-
   const [isMarquee, setIsMarquee] = useState(false);
 
   const onStageMouseDown = (e) => {
@@ -51,7 +50,6 @@ export default function CanvasStage({ shapes, setShapes, selectedIds, setSelecte
     marqueeRef.current = null;
   };
 
-  // Selection logic
   const handleSelect = (e, id) => {
     const isShift = e.evt.shiftKey;
     if (isShift) {
@@ -63,7 +61,6 @@ export default function CanvasStage({ shapes, setShapes, selectedIds, setSelecte
     }
   };
 
-  // Drag & Transform
   const handleDragEnd = (e, id) => {
     const node = e.target;
     const snappedX = Math.round(node.x() / GRID) * GRID;
@@ -157,16 +154,7 @@ export default function CanvasStage({ shapes, setShapes, selectedIds, setSelecte
         );
 
       case "image":
-        return (
-          <ImageUrl
-            {...commonProps}
-            x={shape.x}
-            y={shape.y}
-            width={shape.width}
-            height={shape.height}
-            src={shape.src}
-          />
-        );
+        return <URLImage {...commonProps} {...shape} />;
 
       default:
         return null;

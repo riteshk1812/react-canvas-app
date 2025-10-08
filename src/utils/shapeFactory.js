@@ -3,8 +3,8 @@ export const GRID = 10;
 export function ShapeFactory(type, opts = {}) {
   const base = {
     id: `id_${Math.random().toString(36).slice(2, 9)}`,
-    x: 50 + Math.round(Math.random() * 200),
-    y: 50 + Math.round(Math.random() * 200),
+    x: 80 + Math.round(Math.random() * 200),
+    y: 80 + Math.round(Math.random() * 200),
     rotation: 0,
     draggable: true,
   };

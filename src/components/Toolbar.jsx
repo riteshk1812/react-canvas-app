@@ -1,6 +1,15 @@
 import React from "react";
 
-export default function Toolbar({ onAddRect, onAddCircle, onAddText, onUploadImage, onSave, onLoad, onExport, selectedCount }) {
+export default function Toolbar({
+  onAddRect,
+  onAddCircle,
+  onAddText,
+  onUploadImage,
+  onSave,
+  onLoad,
+  onExport,
+  selectedCount,
+}) {
   return (
     <div className="toolbar">
       <button onClick={onAddRect}>Add Rect</button>
@@ -14,6 +23,20 @@ export default function Toolbar({ onAddRect, onAddCircle, onAddText, onUploadIma
           accept="image/*"
           style={{ display: "none" }}
           onChange={(e) => e.target.files[0] && onUploadImage(e.target.files[0])}
+        />
+      </label>
+
+      <button className="secondary" onClick={onSave}>
+        Save JSON
+      </button>
+
+      <label className="load">
+        Load JSON
+        <input
+          type="file"
+          accept="application/json"
+          style={{ display: "none" }}
+          onChange={(e) => e.target.files[0] && onLoad(e.target.files[0])}
         />
       </label>
 

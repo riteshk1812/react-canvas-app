@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { Transformer } from "react-konva";
 
-export default function KonvaTransformer({ selectedIds, nodesMap, onTransformEnd }) {
+export default function KonvaTransformer({ selectedIds, nodesMap }) {
   const trRef = useRef();
 
   useEffect(() => {
@@ -12,21 +12,5 @@ export default function KonvaTransformer({ selectedIds, nodesMap, onTransformEnd
     trRef.current.getLayer()?.batchDraw();
   }, [selectedIds, nodesMap]);
 
-  return (
-    <Transformer
-      ref={trRef}
-      rotateEnabled
-      enabledAnchors={[
-        "top-left",
-        "top-right",
-        "bottom-left",
-        "bottom-right",
-        "middle-left",
-        "middle-right",
-        "top-center",
-        "bottom-center",
-      ]}
-      onTransformEnd={onTransformEnd}
-    />
-  );
+  return <Transformer ref={trRef} rotateEnabled={true} />;
 }
